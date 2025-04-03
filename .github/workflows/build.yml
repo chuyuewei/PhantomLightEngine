@@ -27,15 +27,16 @@ jobs:
       uses: lukka/get-cmake@latest
       
     - name: Create Build Directory
-      run: mkdir -p build
+      shell: cmd
+      run: if not exist build mkdir build
       
     - name: Configure CMake
-      run: |
-        cmake -S . -B build -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
+      shell: cmd
+      run: cmake -S . -B build -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
       
     - name: Build
-      run: |
-        cmake --build build --config ${{ matrix.build_type }}
+      shell: cmd
+      run: cmake --build build --config ${{ matrix.build_type }}
       
     # 暂时注释掉测试步骤，因为可能还没有测试
     # - name: Run Tests
@@ -43,9 +44,8 @@ jobs:
     #   run: ctest -C ${{ matrix.build_type }} --output-on-failure
       
     - name: List Build Output
-      run: |
-        dir /s build
       shell: cmd
+      run: dir /s build
       
     - name: Upload Artifacts
       uses: actions/upload-artifact@v3
