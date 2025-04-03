@@ -1,0 +1,13 @@
+# Resource模块 CMakeLists.txt
+
+file(GLOB_RECURSE RESOURCE_SOURCES 
+    "${CMAKE_CURRENT_SOURCE_DIR}/*.cpp"
+)
+
+file(GLOB_RECURSE RESOURCE_HEADERS 
+    "${CMAKE_CURRENT_SOURCE_DIR}/*.h"
+    "${CMAKE_CURRENT_SOURCE_DIR}/*.hpp"
+)
+
+# 添加源文件到引擎库
+target_sources(${ENGINE_NAME} PRIVATE ${RESOURCE_SOURCES} ${RESOURCE_HEADERS})

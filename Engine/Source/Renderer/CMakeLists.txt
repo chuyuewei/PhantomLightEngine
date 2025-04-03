@@ -1,0 +1,13 @@
+# Renderer模块 CMakeLists.txt
+
+file(GLOB_RECURSE RENDERER_SOURCES 
+    "${CMAKE_CURRENT_SOURCE_DIR}/*.cpp"
+)
+
+file(GLOB_RECURSE RENDERER_HEADERS 
+    "${CMAKE_CURRENT_SOURCE_DIR}/*.h"
+    "${CMAKE_CURRENT_SOURCE_DIR}/*.hpp"
+)
+
+# 添加源文件到引擎库
+target_sources(${ENGINE_NAME} PRIVATE ${RENDERER_SOURCES} ${RENDERER_HEADERS})

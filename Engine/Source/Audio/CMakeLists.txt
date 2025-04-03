@@ -1,0 +1,13 @@
+# Audio模块 CMakeLists.txt
+
+file(GLOB_RECURSE AUDIO_SOURCES 
+    "${CMAKE_CURRENT_SOURCE_DIR}/*.cpp"
+)
+
+file(GLOB_RECURSE AUDIO_HEADERS 
+    "${CMAKE_CURRENT_SOURCE_DIR}/*.h"
+    "${CMAKE_CURRENT_SOURCE_DIR}/*.hpp"
+)
+
+# 添加源文件到引擎库
+target_sources(${ENGINE_NAME} PRIVATE ${AUDIO_SOURCES} ${AUDIO_HEADERS})

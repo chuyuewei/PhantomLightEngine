@@ -1,0 +1,13 @@
+# Scene模块 CMakeLists.txt
+
+file(GLOB_RECURSE SCENE_SOURCES 
+    "${CMAKE_CURRENT_SOURCE_DIR}/*.cpp"
+)
+
+file(GLOB_RECURSE SCENE_HEADERS 
+    "${CMAKE_CURRENT_SOURCE_DIR}/*.h"
+    "${CMAKE_CURRENT_SOURCE_DIR}/*.hpp"
+)
+
+# 添加源文件到引擎库
+target_sources(${ENGINE_NAME} PRIVATE ${SCENE_SOURCES} ${SCENE_HEADERS})
