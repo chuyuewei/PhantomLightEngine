@@ -1,0 +1,48 @@
+name: Build PhantomLightEngine
+
+on:
+  push:
+    branches: [ main, master, develop ]
+  pull_request:
+    branches: [ main, master, develop ]
+
+jobs:
+  build:
+    name: Build on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [windows-latest]
+        build_type: [Debug, Release]
+        
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        submodules: recursive
+        
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v1.1
+      
+    - name: Setup CMake
+      uses: lukka/get-cmake@latest
+      
+    - name: Create Build Directory
+      run: mkdir build
+      
+    - name: Configure CMake
+      run: cmake -B build -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
+      
+    - name: Build
+      run: cmake --build build --config ${{ matrix.build_type }}
+      
+    - name: Run Tests
+      working-directory: build
+      run: ctest -C ${{ matrix.build_type }} --output-on-failure
+      
+    - name: Upload Artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: PhantomLightEngine-${{ matrix.os }}-${{ matrix.build_type }}
+        path: |
+          build/bin/**/*.exe
+          build/bin/**/*.dll
