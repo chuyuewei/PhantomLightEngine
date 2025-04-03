@@ -27,16 +27,16 @@ jobs:
       uses: lukka/get-cmake@latest
       
     - name: Create Build Directory
-<<<<<<< HEAD
-      run: mkdir -p build
+      shell: cmd
+      run: if not exist build mkdir build
       
     - name: Configure CMake
-      run: |
-        cmake -S . -B build -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
+      shell: cmd
+      run: cmake -S . -B build -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
       
     - name: Build
-      run: |
-        cmake --build build --config ${{ matrix.build_type }}
+      shell: cmd
+      run: cmake --build build --config ${{ matrix.build_type }}
       
     # 暂时注释掉测试步骤，因为可能还没有测试
     # - name: Run Tests
@@ -44,32 +44,12 @@ jobs:
     #   run: ctest -C ${{ matrix.build_type }} --output-on-failure
       
     - name: List Build Output
-      run: |
-        dir /s build
       shell: cmd
-=======
-      run: mkdir build
-      
-    - name: Configure CMake
-      run: cmake -B build -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
-      
-    - name: Build
-      run: cmake --build build --config ${{ matrix.build_type }}
-      
-    - name: Run Tests
-      working-directory: build
-      run: ctest -C ${{ matrix.build_type }} --output-on-failure
->>>>>>> b4edd4d9df7a7d5907432ff56c344feafe53fb13
+      run: dir /s build
       
     - name: Upload Artifacts
       uses: actions/upload-artifact@v3
       with:
         name: PhantomLightEngine-${{ matrix.os }}-${{ matrix.build_type }}
-<<<<<<< HEAD
         path: build
         if-no-files-found: warn
-=======
-        path: |
-          build/bin/**/*.exe
-          build/bin/**/*.dll
->>>>>>> b4edd4d9df7a7d5907432ff56c344feafe53fb13
