@@ -27,6 +27,7 @@ jobs:
       uses: lukka/get-cmake@latest
       
     - name: Create Build Directory
+<<<<<<< HEAD
       run: mkdir -p build
       
     - name: Configure CMake
@@ -46,10 +47,29 @@ jobs:
       run: |
         dir /s build
       shell: cmd
+=======
+      run: mkdir build
+      
+    - name: Configure CMake
+      run: cmake -B build -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
+      
+    - name: Build
+      run: cmake --build build --config ${{ matrix.build_type }}
+      
+    - name: Run Tests
+      working-directory: build
+      run: ctest -C ${{ matrix.build_type }} --output-on-failure
+>>>>>>> b4edd4d9df7a7d5907432ff56c344feafe53fb13
       
     - name: Upload Artifacts
       uses: actions/upload-artifact@v3
       with:
         name: PhantomLightEngine-${{ matrix.os }}-${{ matrix.build_type }}
+<<<<<<< HEAD
         path: build
         if-no-files-found: warn
+=======
+        path: |
+          build/bin/**/*.exe
+          build/bin/**/*.dll
+>>>>>>> b4edd4d9df7a7d5907432ff56c344feafe53fb13
