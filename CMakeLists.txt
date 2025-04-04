@@ -33,7 +33,12 @@ install(TARGETS PhantomLightEngine
 )
 
 # 导出目标
-install(EXPORT PhantomLightEngineTargets
+install(EXPORT PhantomLightEngineMainTargets
+    FILE PhantomLightEngineTargets.cmake
+    NAMESPACE PhantomLightEngine::
+    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/PhantomLightEngine
+)
+install(EXPORT PhantomLightEngineExtraTargets
     FILE PhantomLightEngineTargets.cmake
     NAMESPACE PhantomLightEngine::
     DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/PhantomLightEngine
