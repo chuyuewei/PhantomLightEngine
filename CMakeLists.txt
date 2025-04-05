@@ -22,27 +22,6 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 add_subdirectory(Engine)
 add_subdirectory(Examples)
 
-# 确保PhantomLightEngine目标存在
-# 如果PhantomLightEngine是在Engine子目录中定义的，请确保它被正确导出
-
-# 安装规则 - 确保目标存在
-if(TARGET PhantomLightEngine)
-    install(TARGETS PhantomLightEngine
-        EXPORT PhantomLightEngineTargets
-        LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-        ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
-        RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-        INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
-    )
-
-    # 导出目标 - 使用单一导出集
-    install(EXPORT PhantomLightEngineTargets
-        FILE PhantomLightEngineTargets.cmake
-        NAMESPACE PhantomLightEngine::
-        DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/PhantomLightEngine
-    )
-endif()
-
 # 创建配置文件
 include(CMakePackageConfigHelpers)
 write_basic_package_version_file(
