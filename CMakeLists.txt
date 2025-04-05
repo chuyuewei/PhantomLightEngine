@@ -24,9 +24,7 @@ add_subdirectory(Examples)
 
 # 确保PhantomLightEngine目标存在
 # 如果PhantomLightEngine是在Engine子目录中定义的，请确保它被正确导出
-# 下面的安装规则假设PhantomLightEngine目标已经在某处定义
 
-<<<<<<< HEAD
 # 安装规则 - 确保目标存在
 if(TARGET PhantomLightEngine)
     install(TARGETS PhantomLightEngine
@@ -44,19 +42,6 @@ if(TARGET PhantomLightEngine)
         DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/PhantomLightEngine
     )
 endif()
-=======
-# 导出目标
-install(EXPORT PhantomLightEngineMainTargets
-    FILE PhantomLightEngineTargets.cmake
-    NAMESPACE PhantomLightEngine::
-    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/PhantomLightEngine
-)
-install(EXPORT PhantomLightEngineExtraTargets
-    FILE PhantomLightEngineTargets.cmake
-    NAMESPACE PhantomLightEngine::
-    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/PhantomLightEngine
-)
->>>>>>> 2dc9f8cf573714bd9796ea08f988a3ae0d7e2347
 
 # 创建配置文件
 include(CMakePackageConfigHelpers)
