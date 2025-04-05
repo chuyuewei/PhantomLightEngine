@@ -8,6 +8,7 @@
 #ifdef PLE_PLATFORM_WINDOWS
 
 #include <iostream>
+#include <windowsx.h>
 
 namespace PLE {
 
