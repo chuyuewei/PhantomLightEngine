@@ -22,27 +22,27 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 add_subdirectory(Engine)
 add_subdirectory(Examples)
 
-# 安装规则
-include(GNUInstallDirs)
-install(TARGETS PhantomLightEngine
-    EXPORT PhantomLightEngineTargets
-    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
-    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-    INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
-)
+# 确保PhantomLightEngine目标存在
+# 如果PhantomLightEngine是在Engine子目录中定义的，请确保它被正确导出
+# 下面的安装规则假设PhantomLightEngine目标已经在某处定义
 
-# 导出目标
-install(EXPORT PhantomLightEngineMainTargets
-    FILE PhantomLightEngineTargets.cmake
-    NAMESPACE PhantomLightEngine::
-    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/PhantomLightEngine
-)
-install(EXPORT PhantomLightEngineExtraTargets
-    FILE PhantomLightEngineTargets.cmake
-    NAMESPACE PhantomLightEngine::
-    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/PhantomLightEngine
-)
+# 安装规则 - 确保目标存在
+if(TARGET PhantomLightEngine)
+    install(TARGETS PhantomLightEngine
+        EXPORT PhantomLightEngineTargets
+        LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+        ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+        RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+        INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
+    )
+
+    # 导出目标 - 使用单一导出集
+    install(EXPORT PhantomLightEngineTargets
+        FILE PhantomLightEngineTargets.cmake
+        NAMESPACE PhantomLightEngine::
+        DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/PhantomLightEngine
+    )
+endif()
 
 # 创建配置文件
 include(CMakePackageConfigHelpers)
