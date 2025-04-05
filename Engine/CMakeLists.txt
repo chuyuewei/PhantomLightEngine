@@ -18,11 +18,11 @@ add_library(${ENGINE_NAME} STATIC
 )
 
 # 设置包含目录
-target_include_directories(${ENGINE_NAME} 
+# 添加包含目录
+target_include_directories(PhantomLightEngine 
     PUBLIC 
-        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Include>
-        $<INSTALL_INTERFACE:include>
-    PRIVATE
+        ${CMAKE_CURRENT_SOURCE_DIR}/Include
+    PRIVATE 
         ${CMAKE_CURRENT_SOURCE_DIR}/Source
 )
 

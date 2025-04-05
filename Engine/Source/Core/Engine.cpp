@@ -3,7 +3,8 @@
  * @brief 引擎核心类实现
  */
 
-#include "../../Include/Core/Engine.h"
+// 修改包含路径，使用更明确的路径
+#include "Core/Engine.h"  // 使用项目相对路径而不是文件相对路径
 #include <chrono>
 #include <thread>
 #include <iostream>
