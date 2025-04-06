@@ -27,21 +27,20 @@ PhantomLightEngine是一个现代化的游戏引擎，旨在提供高性能、�
 ```bash
 git clone https://github.com/yourusername/PhantomLightEngine.git
 cd PhantomLightEngine
-
+```
 2. 创建构建目录
 ```bash
 mkdir build
 cd build
-
+```
 3. 配置CMake
 ```bash
 cmake -S .. -B . -DCMAKE_BUILD_TYPE=Release
+```
 4. 构建引擎
-
 ```bash
 cmake --build . --config Release
-
-
+```
 ## 使用引擎
 ```ccp
 #include <PhantomLightEngine/Core/Engine.h>
@@ -64,7 +63,7 @@ int main() {
     
     return 0;
 }
-
+```
 
 ## 项目结构
 ```plaintext
