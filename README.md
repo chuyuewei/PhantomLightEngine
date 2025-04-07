@@ -1,6 +1,6 @@
 # PhantomLightEngine
 
-PhantomLightEngine是一个现代化的游戏引擎，旨在提供高性能、易用性和跨平台支持。
+PhantomLightEngine是一个现代化的游戏引擎，旨在提供高性能、模块化、易用性和跨平台支持。
 
 ## 特性
 
